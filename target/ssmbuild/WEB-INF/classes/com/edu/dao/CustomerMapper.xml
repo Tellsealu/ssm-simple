@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.edu.dao.CustomerMapper">
+
+    <!--增加一个Customer-->
+    <insert id="addCustomer" parameterType="Customer">
+        insert into ssm.tb_customer(Cname,phone,email,address)
+        values (#{Cname}, #{phone}, #{email},#{address})
+    </insert>
+
+    <!--根据id删除一个Customer-->
+    <delete id="deleteCustomerById" parameterType="int">
+        delete from ssm.tb_customer where Cid=#{Cid}
+    </delete>
+
+    <!--更新Customer-->
+    <update id="updateCustomer" parameterType="Customer">
+        update ssm.tb_customer
+        set Cname = #{Cname},phone = #{phone},email = #{email},address=#{address}
+        where Cid = #{Cid}
+    </update>
+
+    <!--根据id查询,返回一个Book-->
+    <select id="queryCustomerById" resultType="Customer">
+        select * from ssm.tb_customer
+        where Cid = #{Cid}
+    </select>
+
+    <!--查询全部Book-->
+    <select id="queryAllCustomer" resultType="Customer">
+        SELECT * from ssm.tb_customer
+    </select>
+
+    <select id="queryCustomer" resultType="Customer">
+        SELECT * from ssm.tb_customer where Cname=#{Cname}
+    </select>
+
+</mapper>
